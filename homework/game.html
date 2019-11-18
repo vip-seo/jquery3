@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		section {
+			width: 800px;
+			height: 600px;
+			position: relative;
+			border: 1px dashed lightgreen;
+		}
+		div {
+			width: 50px;
+			height: 50px;
+			border-radius: 80%;
+			background: green;
+			position: absolute;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			class Ball {
+				constructor(ball$, canvas$) {
+					this.ball$ = ball$;
+					this.canvas$ = canvas$;
+					this.verticalDirection = 'BOTTOM';
+					this.horizontalDirection = 'RIGTH';
+					this.top = 0;
+					this.left = 0;
+				}
+
+				changeDirection() {
+					if (this.ball$.position().left + this.ball$.width() === this.canvas$.width()) {
+						this.horizontalDirection = 'LEFT';
+					} else if (this.ball$.position().left === 0) {
+						this.horizontalDirection = 'RIGHT';
+					}
+
+					if (this.ball$.position().top + this.ball$.height() === this.canvas$.height()) {
+						this.verticalDirection = 'TOP';
+					} else if (this.ball$.position().top === 0) {
+						this.verticalDirection = 'BOTTOM';
+					}
+				}
+
+				move() {
+					this.changeDirection();
+
+					if (this.horizontalDirection === 'LEFT') {
+						this.ball$.css('left', this.left -- + 'px');
+					} else {
+						this.ball$.css('left', this.left ++ + 'px');
+					}
+
+					if (this.verticalDirection === 'TOP') {
+						this.ball$.css('top', this.top -- + 'px');
+					} else {
+						this.ball$.css('top', this.top ++ + 'px');
+					}
+				}
+			}
+
+			var canvas$ = $('#canvas');
+			var balls = [];
+			var intervalId;
+
+			$('#addBall').click(function() {
+				var ball = $('<div></div>');
+				canvas$.append(ball);
+				balls.push(new Ball(ball, canvas$));
+			});
+
+			$('button#start').click(function() {
+				if (!intervalId) {
+					intervalId = setInterval(function() {
+						balls.forEach(function(ball) {
+							ball.move()
+						})
+					}, 10);
+				}
+			});
+
+			$('button#stop').click(function() {
+				clearInterval(intervalId);
+				intervalId = null;
+			})
+		})
+	</script>
+</head>
+<body>
+	<button id='addBall'>Add ball</button>
+	<button id='start'>Start</button>
+	<button id='stop'>Stop</button>
+	<section id="canvas"></section>
+</body>
+</html>
