@@ -1,4 +1,3 @@
-FINAL SCRIPT!!!!!!!!!!!!!!!!!
 <!DOCTYPE html>
 
 <html>
@@ -8,16 +7,6 @@ FINAL SCRIPT!!!!!!!!!!!!!!!!!
 <meta charset="UTF-8">
 
 <title></title>
-
-<!--
-
-Задание.
-
-Используя jQuery реализуйте генерацию списка библиографии после статьи. Результат должен быть как на снимке "результат".
-
-Снимок рядом с этим файлом
-
--->
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/…/…/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
